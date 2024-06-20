@@ -8,4 +8,4 @@
     <title><?= $data['judul']; ?></title>
 </head>
 
-<body class="bg-gray-300">
+<body class="bg-gray-300 p-3">

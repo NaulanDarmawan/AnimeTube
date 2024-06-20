@@ -1,7 +1,9 @@
 <?php
 
-class User extends Controller {
-    public function index() {
+class User extends Controller
+{
+    public function index()
+    {
         $data['judul'] = 'Login Akun';
 
         $this->view('layouts/header', $data);
@@ -9,11 +11,29 @@ class User extends Controller {
         $this->view('layouts/footer');
     }
 
-    public function createUser() {
+    public function register()
+    {
+        $data['judul'] = 'Daftar Akun';
 
+        $this->view('layouts/header', $data);
+        $this->view('auth/register', $data);
+        $this->view('layouts/footer');
     }
 
-    public function validateUser() {
+    public function detail()
+    {
+        $data['judul'] = 'Detail Akun';
 
+        $this->view('layouts/header', $data);
+        $this->view('member/detail', $data);
+        $this->view('layouts/footer');
+    }
+
+    public function createUser()
+    {
+    }
+
+    public function validateUser()
+    {
     }
 }
