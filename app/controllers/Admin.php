@@ -20,7 +20,7 @@ class Admin extends Controller
 
         $this->view('layouts/admin_header', $data);
         $this->view('layouts/admin_sidebar', $data);
-        $this->view('admin/data_user', $data);
+        $this->view('admin/user/data_user', $data);
         $this->view('layouts/admin_footer');
     }
 
@@ -31,7 +31,7 @@ class Admin extends Controller
 
         $this->view('layouts/admin_header', $data);
         $this->view('layouts/admin_sidebar', $data);
-        $this->view('admin/detail_user', $data);
+        $this->view('admin/user/detail_user', $data);
         $this->view('layouts/admin_footer');
     }
 
@@ -43,52 +43,78 @@ class Admin extends Controller
 
         $this->view('layouts/admin_header', $data);
         $this->view('layouts/admin_sidebar', $data);
-        $this->view('admin/data_user', $data);
+        $this->view('admin/user/data_user', $data);
         $this->view('layouts/admin_footer');
     }
 
 
-    public function tambah()
+    // Fungsi CRUD Full Bagi Genre
+    public function genre()
     {
-        if ($this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'Ditambahkan', 'success');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        } else {
-            Flasher::setFlash('Gagal', 'Ditambahkan', 'danger');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        }
+        $data['judul'] = 'Master Genre';
+        $data['genres'] = $this->model('Genre_model')->getAllGenres();
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/genre/data_genre', $data);
+        $this->view('layouts/admin_footer');
     }
 
-    public function hapus($id)
+    public function detailGenre($id)
     {
-        if ($this->model('Mahasiswa_model')->hapusDataMahasiswa($id) > 0) {
-            Flasher::setFlash('Berhasil', 'Dihapus', 'success');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        } else {
-            Flasher::setFlash('Gagal', 'Dihapus', 'danger');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        }
+        $data['judul'] = 'Master User';
+        $data['genre'] = $this->model('Genre_model')->getGenreById($id);
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/genre/detail_genre', $data);
+        $this->view('layouts/admin_footer');
     }
 
-    public function getubah()
+    public function cariGenre()
     {
-        echo json_encode($this->model('Mahasiswa_model')->getMahasiswaById($_POST['id']));
+        $nama = $_POST['keyword'];
+        $data['judul'] = 'Master User';
+        $data['genres'] = $this->model('Genre_model')->getGenresByNama($nama);
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/genre/data_genre', $data);
+        $this->view('layouts/admin_footer');
     }
 
-    public function ubah()
+    // Fungsi CRUD Full Bagi Berita
+    public function berita()
     {
-        if ($this->model('Mahasiswa_model')->ubahDataMahasiswa($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'Diubah', 'success');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        } else {
-            Flasher::setFlash('Gagal', 'Diubah', 'danger');
-            header("Location: " . BASEURL . "/mahasiswa");
-            exit;
-        }
+        $data['judul'] = 'Master Berita';
+        $data['news'] = $this->model('Berita_model')->getAllNews();
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/berita/data_berita', $data);
+        $this->view('layouts/admin_footer');
+    }
+
+    public function cariBerita()
+    {
+        $judul = $_POST['keyword'];
+        $data['judul'] = 'Master Berita';
+        $data['news'] = $this->model('Berita_model')->getNewsByJudulOrDesc($judul);
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/berita/data_berita', $data);
+        $this->view('layouts/admin_footer');
+    }
+
+    public function detailBerita($slug)
+    {
+        $data['judul'] = 'Master Berita';
+        $data['news'] = $this->model('Berita_model')->getNewsBySlug($slug);
+
+        $this->view('layouts/admin_header', $data);
+        $this->view('layouts/admin_sidebar', $data);
+        $this->view('admin/berita/detail_berita', $data);
+        $this->view('layouts/admin_footer');
     }
 }

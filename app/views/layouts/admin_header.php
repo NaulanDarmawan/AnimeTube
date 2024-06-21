@@ -55,7 +55,7 @@
                 <h1 class="text-[16px] text-white bold">DATA USER</h1>
             </div>
         </a>
-        <a href="#">
+        <a href="<?= BASEURL; ?>/admin/genre">
             <div class="h-[40px] bg-purple-500 rounded-lg mt-3 flex justify-center items-center">
                 <h1 class="text-[16px] text-white bold">DATA GENRE</h1>
             </div>
@@ -65,7 +65,7 @@
                 <h1 class="text-[16px] text-white bold">DATA ANIME</h1>
             </div>
         </a>
-        <a href="#">
+        <a href="<?= BASEURL; ?>/admin/berita">
             <div class="h-[40px] bg-emerald-500 rounded-lg mt-3 flex justify-center items-center">
                 <h1 class="text-[16px] text-white bold">DATA BERITA</h1>
             </div>
@@ -91,7 +91,7 @@
                     <h1 class="text-[16px] text-white bold">DATA USER</h1>
                 </div>
             </a>
-            <a href="#">
+            <a href="<?= BASEURL; ?>/admin/genre">
                 <div class="h-[40px] bg-purple-500 rounded-lg mt-3 flex justify-center items-center">
                     <h1 class="text-[16px] text-white bold">DATA GENRE</h1>
                 </div>
@@ -101,7 +101,7 @@
                     <h1 class="text-[16px] text-white bold">DATA ANIME</h1>
                 </div>
             </a>
-            <a href="#">
+            <a href="<?= BASEURL; ?>/admin/berita">
                 <div class="h-[40px] bg-emerald-500 rounded-lg mt-3 flex justify-center items-center">
                     <h1 class="text-[16px] text-white bold">DATA BERITA</h1>
                 </div>
