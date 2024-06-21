@@ -3,7 +3,9 @@
     <div class="w-full grid grid-cols-5">
         <!-- Profil Picture -->
         <div class="col-span-5 h-[250px] md:col-span-2 flex flex-col p-3 items-center">
-            <div class="h-[112px] w-[112px] bg-red-500 rounded-lg"></div>
+            <div class="h-[112px] w-[112px] bg-red-500 rounded-full">
+            <img src="<?= BASEURL; ?>/assets/images/profile.png" alt="Profile" class="w-full object-cover object-center">
+            </div>
             <h1 class="text-3xl">Foto Profil</h1>
             <h1 class="text-sm">JPG / PNG Maks 5mb</h1>
             <div class="flex gap-2 mt-3">

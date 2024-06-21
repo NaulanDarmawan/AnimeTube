@@ -17,13 +17,17 @@
             <h1 class="mb-[22px] text-[34px] bold text-black">Kolom Komentar</h1>
             <!-- Kolom Komen -->
             <div class="h-[54px] flex items-center justify-between mb-[30px]">
-                <div class="w-[70px] h-[54px] bg-red-500 rounded-xl mr-2"></div>
+                <div class="w-[70px] bg-red-500 rounded-full mr-2">
+                <img src="<?= BASEURL; ?>/assets/images/profile.png" alt="Profile" class="w-full object-cover object-center">
+                </div>
                 <input type="text" class="h-[54px] w-full rounded text-xl px-3 py-3" required autocomplete="off">
                 <button class="h-[54px] px-3 bg-green-500 rounded-lg shadow-lg flex justify-center items-center text-xl text-white transition duration-150 ease-in-out hover:scale-125 ml-2">KIRIM</button>
             </div>
             <!-- List Komentar -->
             <div class="h-[200px] flex items-start justify-between mb-2">
-                <div class="w-[70px] h-[54px] bg-red-500 rounded-xl mr-2"></div>
+                <div class="w-[70px] bg-red-500 rounded-full mr-2">
+                <img src="<?= BASEURL; ?>/assets/images/profile.png" alt="Profile" class="w-full object-cover object-center">
+                </div>
                 <div class="w-full overflow-y-auto rounded text-sm px-3 flex flex-col self-stretch">
                     <h1 class="text-xl text-black bold underline">Naulan Darmawan</h1>
                     <h1 class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi hic quas. Molestias sit adipisci aliquam quo autem officia pariatur porro eligendi, perferendis, ducimus similique.</h1>
