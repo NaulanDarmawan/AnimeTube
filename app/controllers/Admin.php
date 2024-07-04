@@ -5,6 +5,7 @@ class Admin extends Controller
     public function index()
     {
         $data['judul'] = 'DAFTAR PENGGUNA APLIKASI';
+        $data['total'] = $this->model('Anime_model')->getDataCount();
 
         $this->view('layouts/admin_header', $data);
         $this->view('layouts/admin_sidebar', $data);

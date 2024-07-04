@@ -110,11 +110,6 @@ class User_model
         }
     }
 
-
-
-
-
-
     public function validasiUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

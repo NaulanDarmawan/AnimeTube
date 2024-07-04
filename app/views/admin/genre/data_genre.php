@@ -5,11 +5,9 @@
     <div class="w-full mt-[50px] overflow-x-auto">
         <!-- Card Print & Insert Data -->
         <div class="w-full flex justify-between px-3">
-            <a href="#">
-                <div class="w-[250px] bg-purple-500 text-xl text-center border border-black border-2 text-white bold p-3 rounded-lg transition duration-150 ease-in-out hover:scale-105">
-                    Cetak Laporan
-                </div>
-            </a>
+            <div id="printReport" class="w-[250px] bg-purple-500 text-xl border border-black border-2 text-white bold p-3 rounded-lg cursor-pointer">
+                Cetak Laporan
+            </div>
             <a href="#">
                 <div class="w-[250px] bg-sky-500 text-xl text-center border border-black border-2 text-white bold p-3 rounded-lg transition duration-150 ease-in-out hover:scale-105">
                     Tambah genre
@@ -54,5 +52,53 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Tabel untuk Cetak PDF -->
+        <div id="printTable" class="hidden">
+            <table class="w-full table-auto text-center bg-white border border-black border-collapse">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="border border-black px-4 py-2">nomor</th>
+                        <th class="border border-black px-4 py-2">nama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $no_urut = 1; ?>
+                    <?php foreach ($data['genres'] as $genre) : ?>
+                        <tr>
+                            <td class="border border-black px-4 py-2"><?= $no_urut ?></td>
+                            <td class="border border-black px-4 py-2"><?= $genre['nama']; ?></td>
+                        </tr>
+                        <?php $no_urut++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('printReport').addEventListener('click', function() {
+        var element = document.getElementById('printTable');
+        element.classList.remove('hidden');
+        var opt = {
+            margin: 1,
+            filename: 'Laporan_Genre.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
+        html2pdf().from(element).set(opt).save().then(function() {
+            element.classList.add('hidden');
+        });
+    });
+</script>

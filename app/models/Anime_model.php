@@ -120,6 +120,16 @@ class Anime_model
         return $this->db->single()['count'];
     }
 
+    public function getDataCount()
+    {
+        $query = "SELECT (SELECT COUNT(id) FROM user) AS total_user,
+    (SELECT COUNT(id) FROM genre) AS total_genre,
+    (SELECT COUNT(id) FROM anime) AS total_anime,
+    (SELECT COUNT(id) FROM berita) AS total_berita;";
+        $this->db->query($query);
+        return $this->db->single();
+    }
+
     public function hapusDataEpisode($link)
     {
         $query = "DELETE FROM episode WHERE link = :link";

@@ -3,7 +3,7 @@
     <h1 class="text-2xl text-white bold">Daftar User Aplikasi</h1>
     <!-- Grid Parents Untuk Card -->
     <div class="w-full mt-[50px] overflow-x-auto">
-        <a href="#">
+        <a href="#" id="printButton">
             <div class="w-[250px] bg-purple-500 text-xl border border-black border-2 text-white bold p-3 rounded-lg">
                 Cetak Laporan
             </div>
@@ -14,7 +14,7 @@
             <button type="submit" name="cari" class="bg-red-500 col-span-5 lg:col-span-2 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Cari Data</button>
         </form>
 
-        <!-- Tabel -->
+        <!-- Tabel Tampilan Web -->
         <div class="w-full overflow-y-auto">
             <table class="w-full table-auto text-center bg-white border border-black border-collapse">
                 <thead class="bg-gray-200">
@@ -52,7 +52,53 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
 
+        <!-- Tabel Untuk Cetak PDF -->
+        <div id="printTable" class="hidden">
+            <table class="w-full table-auto text-center bg-white border border-black border-collapse">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="border border-black px-4 py-2">nomor</th>
+                        <th class="border border-black px-4 py-2">foto</th>
+                        <th class="border border-black px-4 py-2">nama</th>
+                        <th class="border border-black px-4 py-2">email</th>
+                        <th class="border border-black px-4 py-2">role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $no_urut = 1; ?>
+                    <?php foreach ($data['users'] as $user) : ?>
+                        <tr>
+                            <td class="border border-black px-4 py-2"><?= $no_urut ?></td>
+                            <td class="border border-black px-4 py-2 rounded">
+                                <img src="<?= BASEURL; ?>/assets/images/<?= $user['image']; ?>" alt="Foto User" loading="lazy" class="w-12 h-12 object-cover object-center">
+                            </td>
+                            <td class="border border-black px-4 py-2"><?= $user['nama']; ?></td>
+                            <td class="border border-black px-4 py-2"><?= $user['email']; ?></td>
+                            <td class="border border-black px-4 py-2"><?= $user['role']; ?></td>
+                        </tr>
+                        <?php $no_urut++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('printButton').addEventListener('click', function () {
+        var element = document.getElementById('printTable');
+        element.classList.remove('hidden');
+        var opt = {
+            margin:       1,
+            filename:     'Laporan_User.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().from(element).set(opt).save().then(function () {
+            element.classList.add('hidden');
+        });
+    });
+</script>
