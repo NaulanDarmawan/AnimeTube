@@ -48,6 +48,32 @@ class Admin extends Controller
         $this->view('layouts/admin_footer');
     }
 
+    public function updateUser()
+    {
+        if ($this->model('User_model')->updateRole($_POST) > 0) {
+            Flasher::setFlash('Berhasil', 'Diganti', 'success');
+            header("Location: " . BASEURL . "/admin/user");
+            exit;
+        } else {
+            Flasher::setFlash('Gagal', 'Diganti', 'danger');
+            header("Location: " . BASEURL . "/admin/user");
+            exit;
+        }
+    }
+
+    public function hapusUser($slug)
+    {
+        if ($this->model('User_model')->deleteUser($slug) > 0) {
+            Flasher::setFlash('Berhasil', 'Diganti', 'success');
+            header("Location: " . BASEURL . "/admin/user");
+            exit;
+        } else {
+            Flasher::setFlash('Gagal', 'Diganti', 'danger');
+            header("Location: " . BASEURL . "/admin/user");
+            exit;
+        }
+    }
+
 
     // Fungsi CRUD Full Bagi Genre
     public function genre()

@@ -3,20 +3,20 @@
     <h1 class="text-2xl text-white font-bold">Detail User</h1>
     <div class="w-full mt-8">
         <!-- Form -->
-        <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
-            <input type="hidden" name="id" id="id">
+        <form action="<?= BASEURL; ?>/admin/updateUser" method="post">
             <div class="mb-4">
                 <label for="nama" class="block text-white text-lg">Nama User</label>
-                <input type="text" id="id" name="id" class="h-12 w-full bg-gray-300 rounded-lg text-xl px-3 py-2 cursor-not-allowed" value="<?= $data['user']['nama']; ?>" readonly>
+                <input type="text" id="nama" name="nama" class="h-12 w-full bg-gray-300 rounded-lg text-xl px-3 py-2 cursor-not-allowed" value="<?= $data['user']['nama']; ?>" readonly>
             </div>
 
             <div class="mb-4">
-                <label for="role" class="block text-white text-lg">Pilih Role</label>
-                <select class="form-select h-12 w-full bg-white text-gray-900 rounded-lg text-xl px-3 py-2" id="role" name="role">
-                    <option value="admin">Admin</option>
-                    <option value="creator">Creator</option>
-                    <option value="member">Member</option>
-                </select>
+                <label for="role" class="block text-white text-lg">Role</label>
+                        <select name="role" id="role" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <option value="">Pilih Role</option>
+                            <option value="Admin" <?php if ($data['user']['role'] == "Admin") echo "selected"; ?>>Admin</option>
+                            <option value="Creator" <?php if ($data['user']['role'] == "Creator") echo "selected"; ?>>Creator</option>
+                            <option value="User" <?php if ($data['user']['role'] == "User") echo "selected"; ?>>User</option>
+                        </select>
             </div>
 
             <div class="flex justify-end gap-3">

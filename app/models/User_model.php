@@ -110,6 +110,43 @@ class User_model
         }
     }
 
+    public function updateRole()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $role = htmlspecialchars($_POST['role']);
+            $nama = htmlspecialchars($_POST['nama']);
+
+            $query = "UPDATE {$this->table} SET role = :role WHERE nama = :nama";
+            $this->db->query($query);
+            $this->db->bind('role', $role);
+            $this->db->bind('nama', $nama);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash'] = ['tipe' => 'success', 'pesan' => 'Data berhasil diperbarui.', 'aksi' => ''];
+            } else {
+                $_SESSION['flash'] = ['tipe' => 'error', 'pesan' => 'Terjadi kesalahan saat menyimpan data.', 'aksi' => ''];
+            }
+            return $this->db->rowCount();
+        }
+    }
+
+    public function deleteUser($slug)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $query = "DELETE FROM {$this->table} WHERE slug_nama = :slug_nama";
+            $this->db->query($query);
+            $this->db->bind('slug_nama', $slug);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash'] = ['tipe' => 'success', 'pesan' => 'Data berhasil diperbarui.', 'aksi' => ''];
+            } else {
+                $_SESSION['flash'] = ['tipe' => 'error', 'pesan' => 'Terjadi kesalahan saat menyimpan data.', 'aksi' => ''];
+            }
+            return $this->db->rowCount();
+        }
+    }
+
     public function validasiUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -139,7 +176,7 @@ class User_model
                         header('Location: ' . BASEURL . '/member/index');
                         break;
                     case 'Creator':
-                        header('Location: ' . BASEURL . '/kreator/index');
+                        header('Location: ' . BASEURL . '/creator/index');
                         break;
                     default:
                         $_SESSION['flash'] = ['tipe' => 'error', 'pesan' => 'Peran tidak dikenal', 'aksi' => ''];
@@ -170,7 +207,7 @@ class User_model
             case 'User':
                 header('Location: ' . BASEURL . '/member/index');
                 exit;
-            case 'Kreator':
+            case 'Creator':
                 header('Location: ' . BASEURL . '/kreator/index');
                 exit;
             default:

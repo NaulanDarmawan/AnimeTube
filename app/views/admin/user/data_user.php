@@ -39,13 +39,15 @@
                             <td class="border border-black px-4 py-2"><?= $user['email']; ?></td>
                             <td class="border border-black px-4 py-2"><?= $user['role']; ?></td>
                             <td class="border border-black px-4 py-2">
-                                <form action="" method="post" class="flex gap-2 justify-center">
-                                    <a href="<?= BASEURL; ?>/admin/detailUser/<?= $user['slug_nama'] ?>" id="detailUser" class="bg-orange-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Update</a>
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="id" value="#">
-                                    <input type="hidden" name="img" value="#">
-                                    <button type="submit" id="delete" class="bg-red-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Hapus</button>
-                                </form>
+                                <div class="flex justify-center gap-2">
+                                    <a href="<?= BASEURL; ?>/admin/detailUser/<?= $user['slug_nama'] ?>" class="bg-orange-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Update</a>
+                                    <form action="<?= BASEURL; ?>/admin/hapusUser/<?= $user['slug_nama'] ?>" method="post" class="delete-form">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="#">
+                                        <input type="hidden" name="img" value="#">
+                                        <button type="button" class="delete-button bg-red-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php $no_urut++; ?>
@@ -87,18 +89,37 @@
 </div>
 
 <script>
-    document.getElementById('printButton').addEventListener('click', function () {
+    document.getElementById('printButton').addEventListener('click', function() {
         var element = document.getElementById('printTable');
         element.classList.remove('hidden');
         var opt = {
-            margin:       1,
-            filename:     'Laporan_User.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            margin: 1,
+            filename: 'Laporan_User.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
         };
-        html2pdf().from(element).set(opt).save().then(function () {
+        html2pdf().from(element).set(opt).save().then(function() {
             element.classList.add('hidden');
+        });
+    });
+
+    $(document).ready(function() {
+        // Handle click on delete button
+        $('.delete-button').click(function() {
+            var form = $(this).closest('.delete-form');
+            if (confirm('Anda yakin ingin menghapus user ini?')) {
+                form.submit();
+            }
         });
     });
 </script>
