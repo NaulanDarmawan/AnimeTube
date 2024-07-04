@@ -1,3 +1,10 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        //Handle Event Sidebar
+        $("#sidebarButton").click(function() {
+            $("#modal").toggleClass("hidden");
+        });
+    });
+</script>
 </body>
 </html>

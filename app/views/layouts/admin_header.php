@@ -38,10 +38,10 @@
         <div class="h-[60px] mt-5 flex items-center">
             <a href="<?= BASEURL; ?>/user/detail">
                 <div class="w-[50px] h-[50px] bg-sky-500 rounded-full">
-                <img src="<?= BASEURL; ?>/assets/images/profile.png" alt="Profile" class="w-full object-cover object-center">
+                <img src="<?= BASEURL; ?>/assets/images/<?= $_SESSION['user']['image']; ?>" alt="Profile" class="w-full object-cover object-center">
                 </div>
             </a>
-            <h1 class="text-xl text-white bold ml-2">Naulan Darmawan</h1>
+            <h1 class="text-xl text-white bold ml-2"><?= $_SESSION['user']['nama']; ?></h1>
         </div>
 
         <!-- Tombol Aksi -->
@@ -60,7 +60,7 @@
                 <h1 class="text-[16px] text-white bold">DATA GENRE</h1>
             </div>
         </a>
-        <a href="#">
+        <a href="<?= BASEURL; ?>/admin/anime">
             <div class="h-[40px] bg-indigo-500 rounded-lg mt-3 flex justify-center items-center">
                 <h1 class="text-[16px] text-white bold">DATA ANIME</h1>
             </div>
@@ -70,7 +70,7 @@
                 <h1 class="text-[16px] text-white bold">DATA BERITA</h1>
             </div>
         </a>
-        <a href="#">
+        <a href="<?= BASEURL; ?>/user/logout">
             <div class="h-[40px] bg-red-500 rounded-lg mt-3 flex justify-center items-center place-self-end">
                 <h1 class="text-[16px] text-white bold">LOG OUT</h1>
             </div>
@@ -96,7 +96,7 @@
                     <h1 class="text-[16px] text-white bold">DATA GENRE</h1>
                 </div>
             </a>
-            <a href="#">
+            <a href="<?= BASEURL; ?>/admin/anime">
                 <div class="h-[40px] bg-indigo-500 rounded-lg mt-3 flex justify-center items-center">
                     <h1 class="text-[16px] text-white bold">DATA ANIME</h1>
                 </div>
@@ -106,7 +106,7 @@
                     <h1 class="text-[16px] text-white bold">DATA BERITA</h1>
                 </div>
             </a>
-            <a href="#">
+            <a href="<?= BASEURL; ?>/user/logout">
                 <div class="h-[40px] bg-red-500 rounded-lg mt-3 flex justify-center items-center place-self-end">
                     <h1 class="text-[16px] text-white bold">LOG OUT</h1>
                 </div>

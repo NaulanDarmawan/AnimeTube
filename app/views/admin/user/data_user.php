@@ -32,7 +32,7 @@
                     <?php foreach ($data['users'] as $user) : ?>
                         <tr>
                             <td class="border border-black px-4 py-2"><?= $no_urut ?></td>
-                            <td class="border border-black px-4 py-2">
+                            <td class="border border-black px-4 py-2 rounded">
                                 <img src="<?= BASEURL; ?>/assets/images/<?= $user['image']; ?>" alt="Foto User" loading="lazy" class="w-12 h-12 object-cover object-center">
                             </td>
                             <td class="border border-black px-4 py-2"><?= $user['nama']; ?></td>

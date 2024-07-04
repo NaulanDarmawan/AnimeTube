@@ -19,9 +19,6 @@ class Genre_model
     public function getGenreById($id)
     {
         $this->db->query("SELECT * FROM {$this->table} WHERE id=:id");
-
-        // Kita cek tipe data yang masuk dengan fungsi bind, agar tidak bisa di
-        // SQL injection
         $this->db->bind('id', $id);
 
         return $this->db->single();
