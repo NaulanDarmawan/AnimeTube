@@ -110,6 +110,32 @@ class Admin extends Controller
         $this->view('layouts/admin_footer');
     }
 
+    public function updateGenre()
+    {
+        if ($this->model('Genre_model')->updateGenre($_POST) > 0) {
+            Flasher::setFlash('Berhasil', 'Diganti', 'success');
+            header("Location: " . BASEURL . "/admin/genre");
+            exit;
+        } else {
+            Flasher::setFlash('Gagal', 'Diganti', 'danger');
+            header("Location: " . BASEURL . "/admin/genre");
+            exit;
+        }
+    }
+
+    public function hapusGenre($id)
+    {
+        if ($this->model('Genre_model')->deleteGenre($id) > 0) {
+            Flasher::setFlash('Berhasil', 'Diganti', 'success');
+            header("Location: " . BASEURL . "/admin/genre");
+            exit;
+        } else {
+            Flasher::setFlash('Gagal', 'Diganti', 'danger');
+            header("Location: " . BASEURL . "/admin/genre");
+            exit;
+        }
+    }
+
     // Fungsi CRUD Full Bagi Anime
     public function anime()
     {

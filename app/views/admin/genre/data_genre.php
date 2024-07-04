@@ -38,13 +38,13 @@
                             <td class="border border-black px-4 py-2"><?= $no_urut ?></td>
                             <td class="border border-black px-4 py-2"><?= $genre['nama']; ?></td>
                             <td class="border border-black px-4 py-2">
-                                <form action="" method="post" class="flex gap-2 justify-center">
-                                    <a href="<?= BASEURL; ?>/admin/detailGenre/<?= $genre['id'] ?>" id="detailUser" class="bg-orange-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Update</a>
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="id" value="#">
-                                    <input type="hidden" name="img" value="#">
-                                    <button type="submit" id="delete" class="bg-red-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Hapus</button>
-                                </form>
+                                <div class="flex justify-center gap-2">
+                                    <a href="<?= BASEURL; ?>/admin/detailGenre/<?= $genre['id'] ?>" class="bg-orange-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Update</a>
+                                    <form action="<?= BASEURL; ?>/admin/hapusGenre/<?= $genre['id'] ?>" method="post" class="delete-form">
+                                        <input type="hidden" name="action" value="delete">
+                                        <button type="button" class="delete-button bg-red-500 text-xl text-white font-bold p-3 border border-black rounded-lg shadow-lg transition duration-150 ease-in-out hover:scale-105">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php $no_urut++; ?>
@@ -99,6 +99,16 @@
         };
         html2pdf().from(element).set(opt).save().then(function() {
             element.classList.add('hidden');
+        });
+    });
+
+    $(document).ready(function() {
+        // Handle click on delete button
+        $('.delete-button').click(function() {
+            var form = $(this).closest('.delete-form');
+            if (confirm('Anda yakin ingin menghapus genre ini?')) {
+                form.submit();
+            }
         });
     });
 </script>

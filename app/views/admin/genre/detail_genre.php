@@ -3,7 +3,7 @@
     <h1 class="text-2xl text-white font-bold">Detail Genre</h1>
     <div class="w-full mt-8">
         <!-- Form -->
-        <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+        <form action="<?= BASEURL; ?>/admin/updateGenre" method="post">
             <input type="hidden" name="id" id="id">
             <div class="mb-4">
                 <label for="nama" class="block text-white text-lg">ID Genre</label>
@@ -12,7 +12,7 @@
 
             <div class="mb-4">
                 <label for="nama" class="block text-white text-lg">Nama</label>
-                <input type="text" id="id" name="id" class="h-12 w-full bg-white rounded-lg text-xl px-3 py-2" value="<?= $data['genre']['nama']; ?>" required>
+                <input type="text" id="nama" name="nama" class="h-12 w-full bg-white rounded-lg text-xl px-3 py-2" value="<?= $data['genre']['nama']; ?>" required>
             </div>
 
             <div class="flex justify-end gap-3">

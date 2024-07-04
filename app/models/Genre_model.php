@@ -36,38 +36,40 @@ class Genre_model
         }
     }
 
-    public function tambahDataMahasiswa($data)
+    public function updateGenre()
     {
-        $query = "INSERT INTO mahasiswa(nama, nim, email, jurusan) VALUES (:nama, :nim, :email, :jurusan)";
-        $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nim', $data['nim']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = htmlspecialchars($_POST['id']);
+            $nama = htmlspecialchars($_POST['nama']);
 
-        $this->db->execute();
-        return $this->db->rowCount();
+            $query = "UPDATE {$this->table} SET nama = :nama WHERE id = :id";
+            $this->db->query($query);
+            $this->db->bind('id', $id);
+            $this->db->bind('nama', $nama);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash'] = ['tipe' => 'success', 'pesan' => 'Data berhasil diperbarui.', 'aksi' => ''];
+            } else {
+                $_SESSION['flash'] = ['tipe' => 'error', 'pesan' => 'Terjadi kesalahan saat menyimpan data.', 'aksi' => ''];
+            }
+            return $this->db->rowCount();
+        }
     }
 
-    public function hapusDataMahasiswa($id)
+    public function deleteGenre($id)
     {
-        $this->db->query("DELETE FROM {$this->table} WHERE id=:id");
-        $this->db->bind('id', $id);
-        $this->db->execute();
-        return $this->db->rowCount();
-    }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    public function ubahDataMahasiswa($data)
-    {
-        $query = "UPDATE mahasiswa SET nama = :nama, nim = :nim, email = :email, jurusan = :jurusan WHERE id = :id";
-        $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nim', $data['nim']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
-        $this->db->bind('id', $data['id']);
+            $query = "DELETE FROM {$this->table} WHERE id = :id";
+            $this->db->query($query);
+            $this->db->bind('id', $id);
 
-        $this->db->execute();
-        return $this->db->rowCount();
+            if ($this->db->execute()) {
+                $_SESSION['flash'] = ['tipe' => 'success', 'pesan' => 'Data berhasil diperbarui.', 'aksi' => ''];
+            } else {
+                $_SESSION['flash'] = ['tipe' => 'error', 'pesan' => 'Terjadi kesalahan saat menyimpan data.', 'aksi' => ''];
+            }
+            return $this->db->rowCount();
+        }
     }
 }
